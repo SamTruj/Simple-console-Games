@@ -8,6 +8,7 @@ int difficulty = 2;
 int maxDifficulty = 6;
 int guessA, guessB, guessC;
 int hp;
+string response;
 
 void start();
 void playGame();
@@ -19,9 +20,9 @@ int main() {
         playGame();
         cin.clear();//clears the failbit
         cin.ignore();//discards the buffer
+        difficulty++;     
     }
-    cout<<"\n";
-    cout<<"You succesfully hacked the bank";
+    cout<<"\nGame Over";
     return 0;
 }
 //void to start/restart Game
@@ -30,6 +31,7 @@ void start()
     difficulty = 2;
     maxDifficulty = 2;
     hp = 3;
+    cout<<"---------------------------------------------------------------------------------------------------------\n";
     cout<<"Youre a secret Agent trying to hack the Mafias bank account, ";
     cout<<"go and  decifer each number of the codes!\n";
 }
@@ -58,7 +60,6 @@ void playGame()
         if(guessSum == sum && guessMult == mult)
         {
             cout<<"Great! you guess the code!";
-            ++difficulty; 
             break;
         }else
         {
@@ -67,12 +68,15 @@ void playGame()
                 cout<<"Uff that wasnt the code, come on you still have "<< hp << " tries\n";
             }else
             {
+                cout<<"You got trapped by the Mafia Bosses";
                 cout<<"Do you want to try again yes/no?\n";
-                string response;
                 cin>>response;
                 if (response == "yes")
                 {
                     start();
+                }else{
+                    difficulty = maxDifficulty + 1;
+                    break;
                 }
             }
         }
