@@ -19,7 +19,6 @@ int main() {
         playGame();
         cin.clear();//clears the failbit
         cin.ignore();//discards the buffer
-        ++difficulty; 
     }
     cout<<"\n";
     cout<<"You succesfully hacked the bank";
@@ -30,7 +29,7 @@ void start()
 {
     difficulty = 2;
     maxDifficulty = 2;
-    vidas = 3;
+    hp = 3;
     cout<<"Youre a secret Agent trying to hack the Mafias bank account, ";
     cout<<"go and  decifer each number of the codes!\n";
 }
@@ -59,12 +58,22 @@ void playGame()
         if(guessSum == sum && guessMult == mult)
         {
             cout<<"Great! you guess the code!";
+            ++difficulty; 
             break;
         }else
         {
             hp--;
-            if(hp > 60){
+            if(hp > 0){
                 cout<<"Uff that wasnt the code, come on you still have "<< hp << " tries\n";
+            }else
+            {
+                cout<<"Do you want to try again yes/no?\n";
+                string response;
+                cin>>response;
+                if (response == "yes")
+                {
+                    start();
+                }
             }
         }
     } while (hp > 0);
