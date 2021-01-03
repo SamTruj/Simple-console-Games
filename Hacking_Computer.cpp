@@ -35,7 +35,7 @@ void start()
     hp = 3;
     cout<<"---------------------------------------------------------------------------------------------------------\n";
     cout<<"Youre a secret Agent trying to hack the Mafias bank account, ";
-    cout<<"go and  decifer each number of the codes!\n";
+    cout<<"go and  decifer each code!\n";
 }
 //void to execute the Game
 void playGame()
@@ -87,6 +87,7 @@ void playGame()
                 if (response == "yes")
                 {
                     start();
+                    break;
                 }else{
                     difficulty = maxDifficulty + 1;
                 }
