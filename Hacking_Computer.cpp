@@ -7,7 +7,7 @@ using namespace std;
 
 //global variables
 int difficulty = 2;
-int maxDifficulty = 6;
+int maxDifficulty = 4;
 int guessA, guessB, guessC;
 int hp;
 string response;
@@ -42,7 +42,9 @@ void playGame()
 {
     srand(time(NULL));
     const int a = rand() % difficulty + difficulty;
+    srand(time(NULL));
     const int b = rand() % difficulty + difficulty;
+    srand(time(NULL));
     const int c = rand() % difficulty + difficulty;
 
     const int sum = a + b + c;
