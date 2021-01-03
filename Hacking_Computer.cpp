@@ -59,6 +59,7 @@ void playGame()
         cin>>guessA;
         cin>>guessB;
         cin>>guessC;
+        //to be easier to check each number in the code
         int guessSum = guessA + guessB + guessC;
         int guessMult = guessA * guessB * guessC;
 
