@@ -1,11 +1,13 @@
 #include<iostream>
 #include<stdlib.h>
+#include <conio.h>
+#include <ctime>
 
 using namespace std;
 
 //global variables
 int difficulty = 2;
-int maxDifficulty = 6;
+int maxDifficulty = 4;
 int guessA, guessB, guessC;
 int hp;
 string response;
@@ -19,28 +21,31 @@ int main() {
     {
         playGame();
         cin.clear();//clears the failbit
-        cin.ignore();//discards the buffer
-        difficulty++;     
+        cin.ignore();//discards the buffer  
     }
-    cout<<"\nGame Over";
+    cout<<"\nGame Over\n";
+    getch();
     return 0;
 }
 //void to start/restart Game
 void start()
 {
-    difficulty = 2;
-    maxDifficulty = 2;
+    difficulty = 1;
+    maxDifficulty = 3;
     hp = 3;
     cout<<"---------------------------------------------------------------------------------------------------------\n";
     cout<<"Youre a secret Agent trying to hack the Mafias bank account, ";
-    cout<<"go and  decifer each number of the codes!\n";
+    cout<<"go and  decifer each code!\n";
 }
 //void to execute the Game
 void playGame()
 {
-    const int a = rand() % difficulty * difficulty;
-    const int b = rand() % difficulty * difficulty;
-    const int c = rand() % difficulty * difficulty;
+    srand(time(NULL));
+    const int a = rand() % difficulty + difficulty;
+    srand(time(NULL));
+    const int b = rand() % difficulty + difficulty;
+    srand(time(NULL));
+    const int c = rand() % difficulty + difficulty;
 
     const int sum = a + b + c;
     const int mult = a * b * c;
@@ -59,7 +64,15 @@ void playGame()
 
         if(guessSum == sum && guessMult == mult)
         {
-            cout<<"Great! you guess the code!";
+            difficulty++;
+            if (difficulty > maxDifficulty)
+            {
+                cout<<"You did it agent! You robbed all the Mafias money!\n";
+                cout<<"Now come back to the headquarters\n";
+            }else
+            {
+                cout<<"Great! you guess the code! But you still have work to do!\n";
+            }
             break;
         }else
         {
@@ -68,15 +81,15 @@ void playGame()
                 cout<<"Uff that wasnt the code, come on you still have "<< hp << " tries\n";
             }else
             {
-                cout<<"You got trapped by the Mafia Bosses";
-                cout<<"Do you want to try again yes/no?\n";
+                cout<<"You got trapped by the Mafia Bosses, ";
+                cout<<"do you want to try again yes/no?\n";
                 cin>>response;
                 if (response == "yes")
                 {
                     start();
+                    break;
                 }else{
                     difficulty = maxDifficulty + 1;
-                    break;
                 }
             }
         }
