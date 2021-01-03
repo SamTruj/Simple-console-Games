@@ -40,7 +40,7 @@ void start()
 //void to execute the Game
 void playGame()
 {
-    srand(time(NULL));
+    srand(time(NULL));//random seed
     const int a = rand() % difficulty + difficulty;
     srand(time(NULL));
     const int b = rand() % difficulty + difficulty;
